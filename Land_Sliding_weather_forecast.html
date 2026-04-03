@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>palakkad - Weather Forecast</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('Resources/images/bg-1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #fff;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            width: 50%;
+            max-width: 700px;
+            text-align: center;
+        }
+        h1 {
+            color: #006F90;
+        }
+        h2 {
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .dropdown {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+        select, input[type="date"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #218838;
+        }
+    </style>
+    <script>
+        function updateWeather() {
+            const dropdown = document.getElementById('sampleDropdown');
+            const selectedSample = dropdown.value;
+            let temperatureToday, rainToday, temp1, temp2, temp3, rain1, rain2, rain3;
+
+            switch (selectedSample) {
+                case 'sample-1':
+                    temperatureToday = 30; rainToday = 5; temp1 = 30; temp2 = 32; temp3 = 28; rain1 = 5; rain2 = 10; rain3 = 400; break;
+                case 'sample-2':
+                    temperatureToday = 25; rainToday = 20; temp1 = 25; temp2 = 27; temp3 = 26; rain1 = 15; rain2 = 12; rain3 = 100; break;
+                case 'sample-3':
+                    temperatureToday = 35; rainToday = 2; temp1 = 35; temp2 = 33; temp3 = 31; rain1 = 2; rain2 = 3; rain3 = 1; break;
+                case 'sample-4':
+                    temperatureToday = 28; rainToday = 15; temp1 = 29; temp2 = 27; temp3 = 30; rain1 = 10; rain2 = 20; rain3 = 5; break;
+                case 'sample-5':
+                    temperatureToday = 22; rainToday = 30; temp1 = 23; temp2 = 24; temp3 = 26; rain1 = 25; rain2 = 18; rain3 = 20; break;
+                case 'sample-6':
+                    temperatureToday = 32; rainToday = 0; temp1 = 31; temp2 = 34; temp3 = 33; rain1 = 0; rain2 = 1; rain3 = 2; break;
+                case 'sample-7':
+                    temperatureToday = 27; rainToday = 10; temp1 = 26; temp2 = 28; temp3 = 29; rain1 = 12; rain2 = 9; rain3 = 8; break;
+                case 'sample-8':
+                    temperatureToday = 29; rainToday = 5; temp1 = 30; temp2 = 28; temp3 = 27; rain1 = 4; rain2 = 6; rain3 = 10; break;
+                case 'sample-9':
+                    temperatureToday = 24; rainToday = 25; temp1 = 22; temp2 = 25; temp3 = 23; rain1 = 30; rain2 = 28; rain3 = 35; break;
+                case 'sample-10':
+                    temperatureToday = 33; rainToday = 1; temp1 = 34; temp2 = 32; temp3 = 31; rain1 = 0; rain2 = 2; rain3 = 1; break;
+                case 'sample-11':
+                    temperatureToday = 26; rainToday = 12; temp1 = 27; temp2 = 25; temp3 = 24; rain1 = 10; rain2 = 15; rain3 = 5; break;
+                case 'sample-12':
+                    temperatureToday = 21; rainToday = 35; temp1 = 20; temp2 = 22; temp3 = 19; rain1 = 40; rain2 = 32; rain3 = 30; break;
+                case 'sample-13':
+                    temperatureToday = 31; rainToday = 3; temp1 = 30; temp2 = 32; temp3 = 33; rain1 = 3; rain2 = 1; rain3 = 0; break;
+                case 'sample-14':
+                    temperatureToday = 29; rainToday = 7; temp1 = 28; temp2 = 30; temp3 = 31; rain1 = 5; rain2 = 6; rain3 = 4; break;
+                case 'sample-15':
+                    temperatureToday = 23; rainToday = 18; temp1 = 24; temp2 = 22; temp3 = 25; rain1 = 20; rain2 = 15; rain3 = 10; break;
+                default:
+                    temperatureToday = 0; rainToday = 0; temp1 = 0; temp2 = 0; temp3 = 0; rain1 = 0; rain2 = 0; rain3 = 0;
+            }
+
+            document.getElementById('tempToday').textContent = temperatureToday;
+            document.getElementById('rainToday').textContent = rainToday;
+            document.getElementById('temp1').textContent = temp1;
+            document.getElementById('temp2').textContent = temp2;
+            document.getElementById('temp3').textContent = temp3;
+            document.getElementById('rain1').textContent = rain1;
+            document.getElementById('rain2').textContent = rain2;
+            document.getElementById('rain3').textContent = rain3;
+
+            // Call API
+            const apiKey = 'AKLY8F668VHVO2XZ';
+            const apiUrl = `https://api.thingspeak.com/update?api_key=${apiKey}&field1=${temperatureToday}&field2=${rainToday}&field3=${rain1 + temp1 / 100}&field4=${rain2 + temp2 / 100}&field5=${rain3 + temp3 / 100}`;
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => console.log('API Response:', data))
+                .catch(error => console.error('Error:', error));
+        }
+
+        function updateTableHeaders() {
+            const selectedDate = new Date(document.getElementById('dateSelect').value);
+            if (!isNaN(selectedDate.getTime())) {
+                const options = { month: 'short', day: '2-digit' };
+                
+                // Set today's date to the selected date
+                document.getElementById('todayDate').textContent = selectedDate.toLocaleDateString('en-US', options);
+                // Set the headers for the next three days
+				selectedDate.setDate(selectedDate.getDate() + 1); // Day 2
+                document.getElementById('day1').textContent = selectedDate.toLocaleDateString('en-US', options);
+                
+                selectedDate.setDate(selectedDate.getDate() + 1); // Day 2
+                document.getElementById('day2').textContent = selectedDate.toLocaleDateString('en-US', options);
+                
+                selectedDate.setDate(selectedDate.getDate() + 1); // Day 3
+                document.getElementById('day3').textContent = selectedDate.toLocaleDateString('en-US', options);
+            }
+        }
+
+        function setTodaysDate() {
+            const today = new Date();
+            document.getElementById('dateSelect').value = today.toISOString().split('T')[0];
+            updateTableHeaders(); // Initialize the table with today's date
+        }
+
+        window.onload = function () {
+            setTodaysDate();
+            const today = new Date();
+            updateWeather(); // Update weather on load with default selection
+        };
+    </script>
+</head>
+<body>
+    <div class="dropdown">
+        <label for="sampleDropdown">Select Sample:</label>
+        <select id="sampleDropdown" onchange="updateWeather()">
+            <option value="sample-1">Sample-1</option>
+            <option value="sample-2">Sample-2</option>
+            <option value="sample-3">Sample-3</option>
+            <option value="sample-4">Sample-4</option>
+            <option value="sample-5">Sample-5</option>
+            <option value="sample-6">Sample-6</option>
+            <option value="sample-7">Sample-7</option>
+            <option value="sample-8">Sample-8</option>
+            <option value="sample-9">Sample-9</option>
+            <option value="sample-10">Sample-10</option>
+            <option value="sample-11">Sample-11</option>
+            <option value="sample-12">Sample-12</option>
+            <option value="sample-13">Sample-13</option>
+            <option value="sample-14">Sample-14</option>
+            <option value="sample-15">Sample-15</option>
+        </select>
+        <input type="date" id="dateSelect" onchange="updateTableHeaders()">
+    </div>
+
+    <div class="container">
+        <h2>Today's Forecast</h2>
+        <p>Temperature: <span id="tempToday"></span> °C</p>
+        <p>Rainfall: <span id="rainToday"></span> mm</p>
+        <p>Date: <span id="todayDate"></span></p> <!-- Added today's date -->
+
+        <h2>3-Day Forecast</h2>
+        <table>
+            <tr>
+                <th>Day</th>
+                <th>Temperature (°C)</th>
+                <th>Rainfall (mm)</th>
+            </tr>
+            <tr>
+                <td id="day1">Day 1</td>
+                <td><span id="temp1"></span></td>
+                <td><span id="rain1"></span></td>
+            </tr>
+            <tr>
+                <td id="day2">Day 2</td>
+                <td><span id="temp2"></span></td>
+                <td><span id="rain2"></span></td>
+            </tr>
+            <tr>
+                <td id="day3">Day 3</td>
+                <td><span id="temp3"></span></td>
+                <td><span id="rain3"></span></td>
+            </tr>
+        </table>
+        <button onclick="updateWeather()">Update Weather</button>
+    </div>
+</body>
+</html>
